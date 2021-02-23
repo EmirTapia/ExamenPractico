@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="jumbotron">
+    <h1 class="lead">Lista de productos</h1>
+    <form asp-action="Index" class="form-group">
+        <p>
+            <input type="text" name="modelo" class="form-control" placeholder="MODELO / SKU">
+            <input type="submit" value="Buscar" Buscar class="btn btn-info" />
+        </p>
+    </form>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                SKU
+            </th>
+            <th>
+                FERT
+            </th>
+            <th>
+                MODELO
+            </th>
+            <th>
+                FECHA
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.ProductoId
+            </td>
+            <td>
+                @item.Sku
+            </td>
+            <td>
+                @item.Fert
+            </td>
+            <td>
+                @item.Modelo
+            </td>
+            <td>
+                @item.Fecha
+            </td>
+            <td>
+                <a>@Html.ActionLink("Editar", "Editar", "Home", new { id = item.ProductoId }, htmlAttributes: null)</a>
+                <a>@Html.ActionLink("Detalles", "Details", "Home", new { id = item.ProductoId }, htmlAttributes: null)</a>
+                <a>@Html.ActionLink("Eliminar", "Delete", "Home", new { id = item.ProductoId }, htmlAttributes: null)</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
